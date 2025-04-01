@@ -14,16 +14,19 @@ const productSchema = new Schema({
         required:true
     },
     stock:{
-    type:number,
+    type:Number,
         default:1,
     },
     price:{
-    type:number,
+    type:Number,
     required:true
     },
     discount:{
-    type:number,
+    type:Number,
     default:0
+    },
+    priceAfterDiscount:{
+        type:Number,
     },
     slug:{
         type:String,
@@ -68,5 +71,5 @@ const productSchema = new Schema({
         timestamps:true,
     });
 
-    const productModel =  mongoose.models.Category||model('Category',productSchema);
+    const productModel = mongoose.models.Product || model('Product', productSchema);
     export default productModel;
