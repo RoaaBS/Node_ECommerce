@@ -58,8 +58,8 @@ const productSchema = new Schema({
         type:Types.ObjectId,
         ref:'Category',
     },
-    colors:[String], //array of color (if product have colors)
-    size:[{      //size of product
+    colors:[String], 
+    size:[{      
         type:[String],
         enum:['small','medium','large','xlarge']
     }]
@@ -69,6 +69,13 @@ const productSchema = new Schema({
       },
     {
         timestamps:true,
+        toJSON:{virtuals:true},
+        toObject:{virtuals:true},
+    });
+    productSchema.virtual('reviews',{
+        ref:'Review',
+        localField:'_id',
+        foreignField:'productId'
     });
 
     const productModel = mongoose.models.Product || model('Product', productSchema);

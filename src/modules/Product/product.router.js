@@ -2,7 +2,9 @@ import {Router} from 'express'
 import * as Controller from './product.controller.js'
 import {auth} from '../../Middleware/auth.js'
 import fileUpload,{fileValidation} from '../../utilitys/multer.js';
+import reviewRouter from './../Review/review.router.js'
 const router =Router();
+router.use('/:productId/reviews',reviewRouter);
 
 router.post('/create',auth(['admin']),fileUpload(fileValidation.image).fields([
 {name:'mainImage',maxCount:1},
